@@ -2,7 +2,7 @@
      File: DataController.m
  Abstract: A simple controller class responsible for managing the application's data.
  Typically this object would be able to load and save a file containing the appliction's data. This example illustrates just the basic minimum: it creates an array containing information about some plays and provides simple accessor methods for the array and its contents.
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -42,7 +42,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
@@ -71,7 +71,6 @@
 // Custom set accessor to ensure the new list is mutable
 - (void)setList:(NSMutableArray *)newList {
     if (list != newList) {
-        [list release];
         list = [newList mutableCopy];
     }
 }
@@ -86,10 +85,6 @@
 }
 
 
-- (void)dealloc {
-    [list release];
-    [super dealloc];
-}
 
 
 - (void)createDemoData {
@@ -112,9 +107,7 @@
 	play.date = [calendar dateFromComponents:dateComponents];
 	characters = [[NSArray alloc] initWithObjects:@"Antony", @"Artemidorus", @"Brutus", @"Caesar", @"Calpurnia", @"Casca", @"Cassius", @"Cicero", @"Cinna", @"Cinna the Poet", @"Citizens", @"Claudius", @"Clitus", @"Dardanius", @"Decius Brutus", @"First Citizen", @"First Commoner", @"First Soldier", @"Flavius", @"Fourth Citizen", @"Lepidus", @"Ligarius", @"Lucilius", @"Lucius", @"Marullus", @"Messala", @"Messenger", @"Metellus Cimber", @"Octavius", @"Pindarus", @"Poet", @"Popilius", @"Portia", @"Publius", @"Second Citizen", @"Second Commoner", @"Second Soldier", @"Servant", @"Soothsayer", @"Strato", @"Third Citizen", @"Third Soldier", @"Tintinius", @"Trebonius", @"Varro", @"Volumnius", @"Young Cato", nil];
     play.characters = characters;
-	[characters release];
 	[playList addObject:play];
-    [play release];
     
 	play = [[Play alloc] init];
 	play.title = @"King Lear";
@@ -123,9 +116,7 @@
 	play.date = [calendar dateFromComponents:dateComponents];
     characters = [[NSArray alloc] initWithObjects:@"Captain", @"Cordelia", @"Curan", @"Doctor", @"Duke of Albany", @"Duke of Burgundy", @"Duke of Cornwall", @"Earl of Gloucester", @"Earl of Kent", @"Edgar", @"Edmund", @"Fool", @"Gentleman", @"Goneril", @"Herald", @"King of France", @"Knight", @"Lear", @"Messenger", @"Old Man", @"Oswald", @"Regan", @"Servant 1", @"Servant 2", @"Servant 3", nil];
     play.characters = characters;
-	[characters release];
 	[playList addObject:play];
-    [play release];
     
 	play = [[Play alloc] init];
 	play.title = @"Othello";
@@ -134,9 +125,7 @@
 	play.date = [calendar dateFromComponents:dateComponents];
     characters = [[NSArray alloc] initWithObjects:@"Bianca", @"Brabantio", @"Cassio", @"Clown", @"Desdemona", @"Duke of Venice", @"Emilia", @"First Gentleman", @"First Musician", @"First Officer", @"First Senator", @"Fourth Gentleman", @"Gentleman", @"Gratiano", @"Herald", @"Iago", @"Lodovico, Kinsman to Brabantio", @"Messenger", @"Montano", @"Othello", @"Roderigo", @"Sailor", @"Second Gentleman", @"Second Senator", @"Third Gentleman", nil];
     play.characters = characters;
-	[characters release];
 	[playList addObject:play];
-    [play release];
     
 	play = [[Play alloc] init];
 	play.title = @"Henry IV, Pt 1";
@@ -145,9 +134,7 @@
 	play.date = [calendar dateFromComponents:dateComponents];
     characters = [[NSArray alloc] initWithObjects:@"Archbishop Scroop", @"Blunt", @"Carrier", @"Chamberlain", @"Earl of Douglas", @"Earl of Northumberland", @"Earl of Westmoreland", @"Earl of Worcester", @"Edward Poins", @"Falstaff", @"First Carrier", @"First Traveller", @"Francis", @"Gadshill", @"Glendower", @"Henry IV", @"Henry V", @"Hostess Quickly", @"Hotspur (Henry Percy)", @"Lady Percy", @"Lord Bardolph", @"Messenger", @"Mortimer", @"Ostler", @"Peto", @"Prince John, of Lancaster", @"Second Carrier", @"Servant", @"Sheriff", @"Sir Michael", @"Vernon", @"Vintner", nil];
     play.characters = characters;
-	[characters release];
 	[playList addObject:play];
-    [play release];
     
 	play = [[Play alloc] init];
 	play.title = @"The Tempest";
@@ -156,14 +143,9 @@
 	play.date = [calendar dateFromComponents:dateComponents];
     characters = [[NSArray alloc] initWithObjects:@"Adrian", @"Alonso", @"Antonio", @"Ariel", @"Boatswain", @"Caliban", @"Ceres", @"Ferdinand", @"Francisco", @"Gonzalo", @"Iris", @"Juno", @"Master", @"Miranda", @"Prospero", @"Sebastian", @"Stephano", @"Trinculo", nil];
     play.characters = characters;
-	[characters release];
 	[playList addObject:play];
-    [play release];
     
     self.list = playList;
-    [playList release];
-    [dateComponents release];
-    [calendar release];
 }
 
 @end

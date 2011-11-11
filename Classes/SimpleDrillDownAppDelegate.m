@@ -1,7 +1,7 @@
 /*
      File: SimpleDrillDownAppDelegate.m
  Abstract: n/a
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
@@ -50,38 +50,31 @@
 #import "DataController.h"
 
 
+@interface SimpleDrillDownAppDelegate ()
+
+@property (nonatomic, strong) RootViewController *rootViewController;
+@property (nonatomic, strong) DataController *dataController;
+
+@end
+
+
+
 @implementation SimpleDrillDownAppDelegate
 
-@synthesize window;
-@synthesize navigationController;
-@synthesize rootViewController;
-@synthesize dataController;
+@synthesize window=_window, rootViewController=_rootViewController, dataController=_dataController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+
+    // Create the data controller and pass it to the root view controller.
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
     
-    // Create the data controller.
     DataController *controller = [[DataController alloc] init];
+    rootViewController.dataController = controller;
     self.dataController = controller;
-    [controller release];
-    
-	rootViewController.dataController = dataController;
-    
-    /*
-	 The navigation and root view controllers are created in the main nib file.
-	 Configure the window with the navigation controller's view and then show it.
-	 */
-    [window addSubview:[navigationController view]];
-    [window makeKeyAndVisible];
 }
 
 
-- (void)dealloc {
-    [navigationController release];
-	[rootViewController release];
-    [window release];
-    [dataController release];
-    [super dealloc];
-}
 
 @end

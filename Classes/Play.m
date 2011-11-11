@@ -1,7 +1,7 @@
 /*
      File: Play.m
  Abstract: A simple class to represent information about a play.
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
@@ -51,14 +51,5 @@
 @implementation Play
 
 @synthesize title, characters, genre, date;
-
-
-- (void)dealloc {
-	[title release];
-	[characters release];
-	[genre release];
-	[date release];
-	[super dealloc];
-}
 
 @end

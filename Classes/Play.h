@@ -1,7 +1,7 @@
 /*
      File: Play.h
  Abstract: A simple class to represent information about a play.
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,22 +41,17 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
 #import <Foundation/Foundation.h>
 
-@interface Play : NSObject {
-	NSString *title;
-	NSArray *characters;
-	NSString *genre;
-	NSDate *date;
-}
+@interface Play : NSObject
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSArray *characters;
-@property (nonatomic, retain) NSString *genre;
-@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSArray *characters;
+@property (nonatomic, strong) NSString *genre;
+@property (nonatomic, strong) NSDate *date;
 
 @end

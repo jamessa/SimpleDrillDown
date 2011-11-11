@@ -1,7 +1,7 @@
 /*
      File: RootViewController.h
  Abstract: A table view controller to display a list of names of plays.
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,16 +41,14 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
 @class DataController;
 
-@interface RootViewController : UITableViewController {
-    DataController *dataController;
-}
+@interface RootViewController : UITableViewController 
 
-@property (nonatomic, retain) DataController *dataController;
+@property (nonatomic, strong) DataController *dataController;
 
 @end

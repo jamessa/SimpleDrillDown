@@ -5,17 +5,24 @@ DESCRIPTION:
 
 This application shows how to create a basic drill down interface.
 
-The first screen shows a list of plays. When the user selects a play, the application displays a second screen that shows a list of the main characters and other data about the play. Both screens use a table view. The first list is in the "plain" style to show a standard list; the second is in the grouped style that you can use to lay out detail information.
+The first scene shows a list of plays. When the user selects a play, the application displays a second scene that shows a list of the main characters and other data about the play. Both screens use a table view. The first list is in the "plain" style to show a standard list; the second is in the grouped style that you can use to lay out detail information.
+
+The transition from the first scene to the second is defined by a segue associated with the prototype table view cell in the table view controller's table view. In the storyboard, the segue is named, "ShowSelectedPlay". The name is used as the idetifier in RootViewController's prepareForSegue:sender: method.
+
+================================================================================
+MEMORY MANAGEMENT STYLE:
+
+Automatic Reference Counting (ARC)
 
 ================================================================================
 BUILD REQUIREMENTS:
 
-iOS 4.0 SDK
+Xcode 4.2 or later, OS X v10.7 or later, iOS 5 or later.
 
 ================================================================================
 RUNTIME REQUIREMENTS:
 
-iPhone OS 3.2 or later
+OS X v10.7 or later, iOS 5 or later.
 
 ================================================================================
 PACKAGING LIST:
@@ -38,12 +45,15 @@ A simple class to represent a play.
 main.m
 Main source file for this sample.
 
-MainWindow.xib
-The xib file containing the application's main window.
+MainStoryboard.storyboard
+The application's main storyboard.
 
 
 ================================================================================
 CHANGES FROM PREVIOUS VERSIONS:
+
+Version 3.0
+- Upgraded to use ARC and storyboards.
 
 Version 2.8
 - Upgraded project to build with the iOS 4.0 SDK.
@@ -77,4 +87,4 @@ Version 2.0
 - The samples now use nib files and UITableViewController; they also adopt the new pattern for table cell reuse.
 
 ================================================================================
-Copyright (C) 2008-2010 Apple Inc. All rights reserved.
+Copyright (C) 2008-2011 Apple Inc. All rights reserved.

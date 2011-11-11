@@ -1,7 +1,7 @@
 /*
      File: RootViewController.m
  Abstract: A table view controller to display a list of names of plays.
-  Version: 2.8
+  Version: 3.0
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -41,7 +41,7 @@
  STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2010 Apple Inc. All Rights Reserved.
+ Copyright (C) 2011 Apple Inc. All Rights Reserved.
  
  */
 
@@ -81,12 +81,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	static NSString *CellIdentifier = @"CellIdentifier";
+	static NSString *CellIdentifier = @"PlayCell";
 	
 	// Dequeue or create a cell of the appropriate type.
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
@@ -100,28 +100,18 @@
 #pragma mark -
 #pragma mark Table view selection
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     /*
-     When a row is selected, create the detail view controller and set its detail item to the item associated with the selected row.
+     When a row is selected, the segue creates the detail view controller as the destination.
+     Set the detail view controller's detail item to the item associated with the selected row.
      */
-    DetailViewController *detailViewController = [[DetailViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
-    detailViewController.play = [dataController objectInListAtIndex:indexPath.row];
-    
-    // Push the detail view controller.
-    [[self navigationController] pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-}
+    if ([[segue identifier] isEqualToString:@"ShowSelectedPlay"]) {
 
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-    
-    [dataController release];
-    [super dealloc];
+        NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+        DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.play = [dataController objectInListAtIndex:selectedRowIndex.row];
+    }
 }
 
 @end
